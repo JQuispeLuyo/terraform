@@ -1,4 +1,6 @@
-variable "gcp_credential_path" {}
+variable "gcp_credential_path" {
+  default = "cs16-adm.json"
+}
 
 variable "project" {
   default = "cs16-289323"

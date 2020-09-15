@@ -1,12 +1,3 @@
-# terraform apply -var-file="personal.tfvars"
-
-provider "google" {
-  credentials = file(var.gcp_credential_path)
-  project     = var.project
-  region      = var.region
-  zone        = var.zone
-}
-
 resource "google_compute_instance" "default" {
   name         = var.name_vm
   machine_type = var.machine_type
@@ -28,7 +19,8 @@ resource "google_compute_instance" "default" {
     ssh-keys = "${var.ssh_user}:${file(var.ssh_pub_key_file)}"
   }
 
-  metadata_startup_script = "echo '${file("server.cfg")}' > /home/server.cfg; docker run -d -p 26900:26900/udp -p 27020:27020/udp -p 27015:27015/udp -p 27015:27015 -e START_MAP=de_aztec -e ADMIN_STEAM=0:1:1234566 -v /home/server.cfg:/opt/hlds/cstrike/server.cfg --name cs cs16ds/server:latest"
+  metadata_startup_script = "echo '${file("server.cfg")}' > /home/server.cfg; docker run -d -p 26900:26900/udp -p 27020:27020/udp -p 27015:27015/udp -p 27015:27015 -e START_MAP=de_aztec -e ADMIN_STEAM=0:1:1234566 -v /home/server.cfg:/opt/hlds/cstrike/server.cfg --name cs jquispeluyo/cs16"
+  
 }
 
 resource "google_compute_firewall" "default" {
