@@ -36,3 +36,4 @@ override.tf.json
 
 ## Credential GCP
 cs16-adm.json
+k8s.json

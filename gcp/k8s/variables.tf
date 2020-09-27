@@ -1,5 +1,5 @@
 variable "project" {
-  default = "cs16-289323"
+  default = "ci-cd-demo-275102"
 }
 
 variable "region" {
@@ -11,11 +11,11 @@ variable "zone" {
 }
 
 variable "cluster" {
-  default = "cicd-workshops"
+  default = "k8s"
 }
 
 variable "credentials" {
-  default = "cs16-adm.json"
+  default = "k8s.json"
 }
 
 variable "kubernetes_min_ver" {
