@@ -7,11 +7,12 @@ variable "project" {
 }
 
 variable "name_vm" {
-  default = "cs16-vm"
+  default = "cs16"
 }
 
 variable "machine_type" {
-  default = "e2-standard-2"
+  # default = "e2-standard-2"
+  default = "e2-small"
 }
 
 variable "region" {
