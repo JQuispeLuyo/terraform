@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vg-teams-au
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: vg-teams-au
+    spec:
+      containers:
+        - name: vg-teams-au
+          image: gcr.io/vg-teams/vg-teams-au@sha256:218aa57b228d0c1db996479433175dfb2612f8b80006c1b10ced146d230e10c2
+          # image: busybox:1.29.0
+          resources:
+            requests:
+              cpu: 0.1
+              memory: 512Mi
+          envFrom:
+          - secretRef:
+              name: env-prod
+          ports:
+            - containerPort: 3301
+  selector:
+    matchLabels:
+      app: vg-teams-au

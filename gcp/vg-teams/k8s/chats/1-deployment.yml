@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vg-teams-hc
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: vg-teams-hc
+    spec:
+      containers:
+        - name: vg-teams-hc
+          image: gcr.io/vg-teams/vg-teams-hc:29d7280c487d3105aceac7215622a772bc42e129
+          # image: busybox:1.29.0
+          resources:
+            requests:
+              cpu: 0.1
+              memory: 512Mi
+          ports:
+            - containerPort: 8089
+  selector:
+    matchLabels:
+      app: vg-teams-hc

@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/auth-url: "https://$host/auth/token"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://vg-teams.vercel.app"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: vg-teams
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /sessions(/|$)(.*)
+        backend:
+          serviceName: vg-teams-be
+          servicePort: 8284
+      - path: /teams(/|$)(.*)
+        backend:
+          serviceName: vg-teams-tm
+          servicePort: 8285
+      - path: /chats(/|$)(.*)
+        backend:
+          serviceName: vg-teams-hc
+          servicePort: 8089
+---
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: vg-teams-auth
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /auth(/|$)(.*)
+        backend:
+          serviceName: vg-teams-au
+          servicePort: 3301

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vg-teams-be
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: vg-teams-be
+    spec:
+      containers:
+        - name: vg-teams-be
+          image: gcr.io/vg-teams/vg-teams-be:d750d777a8cf275f86a3e3b288da638cdde304a9
+          # image: busybox:1.29.0
+          resources:
+            requests:
+              cpu: 0.1
+              memory: 512Mi
+          ports:
+            - containerPort: 8284
+  selector:
+    matchLabels:
+      app: vg-teams-be
