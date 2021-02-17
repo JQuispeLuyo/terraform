@@ -16,12 +16,15 @@ spec:
     spec:
       containers:
         - name: vg-teams-hc
-          image: gcr.io/vg-teams/vg-teams-hc:29d7280c487d3105aceac7215622a772bc42e129
+          image: gcr.io/vg-teams/vg-teams-hc:995fe4ef01370f1bc5aa97ea351ec79410f1b5ea
           # image: busybox:1.29.0
           resources:
             requests:
               cpu: 0.1
               memory: 512Mi
+          envFrom:
+          - secretRef:
+              name: vg-teams-hc-prod-env
           ports:
             - containerPort: 8089
   selector:
