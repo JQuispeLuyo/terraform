@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: vg-teams-au
-          image: gcr.io/vg-teams/vg-teams-au@sha256:218aa57b228d0c1db996479433175dfb2612f8b80006c1b10ced146d230e10c2
+          image: gcr.io/vg-teams/vg-teams-au:18faa9c2990eb6b3233778266181f775026f4e37
           # image: busybox:1.29.0
           resources:
             requests:
@@ -24,7 +24,7 @@ spec:
               memory: 512Mi
           envFrom:
           - secretRef:
-              name: env-prod
+              name: vg-teams-au-prod-env
           ports:
             - containerPort: 3301
   selector:
