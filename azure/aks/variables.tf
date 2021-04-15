@@ -2,7 +2,6 @@ variable "project" {
   type = map
   default = {
     name = "basic-example"
-    // Brazil South
     location = "Brazil South"
   }
 }

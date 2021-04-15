@@ -1,4 +1,4 @@
-# AKS + k8s
+# Terraform + AKS
 
 References
 
